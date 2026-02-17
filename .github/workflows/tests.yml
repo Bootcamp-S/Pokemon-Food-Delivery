@@ -1,0 +1,16 @@
+name: Tests
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        working-directory: ./api
+        run: npm ci
+      - name: Run tests
+        working-directory: ./api/getPokemon
+        run: npm test
