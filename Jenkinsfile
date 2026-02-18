@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 azureFunctionAppPublish azureCredentialsId: 'poke-delivery',
-                        resourceGroup: '<resource_group_name>', appName: '<app_name>',
+                        resourceGroup: 'pokedelivery-rg', appName: 'pokedelivery-func',
                         filePath: '**/*.js,**/*.json'
             }
         }
