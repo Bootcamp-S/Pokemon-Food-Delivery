@@ -16,7 +16,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                azureFunctionAppPublish azureCredentialsId: '<credential_id>',
+                azureFunctionAppPublish azureCredentialsId: 'poke-delivery',
                         resourceGroup: '<resource_group_name>', appName: '<app_name>',
                         filePath: '**/*.js,**/*.json'
             }
