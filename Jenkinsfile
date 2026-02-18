@@ -20,7 +20,7 @@ pipeline {
                         echo "Building..."
                         # Beispiel: Node Function App
                         npm install
-                        zip -r ./build.zip .
+                        zip -r build.zip .
                     '''
                 }
             }
@@ -47,7 +47,7 @@ pipeline {
                     az functionapp deployment source config-zip \
                       -g $RESOURCE_GROUP \
                       -n $FUNCTION_APP_NAME \
-                      --src build.zip
+                      --src ./build.zip
                 '''
             }
         }
