@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-        tools {nodejs "nodejs"}
+        tools {nodejs "recent node"}
 
         environment {
         AZURE_CLIENT_ID     = credentials('AZURE_CLIENT_ID')
