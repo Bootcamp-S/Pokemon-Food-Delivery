@@ -15,13 +15,21 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir("./api") {
+                dir("api") {
                     sh '''
                         echo "Building..."
                         # Beispiel: Node Function App
                         npm install
                         zip -r build.zip .
                     '''
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                dir("api") {
+                    echo 'Testing..'
+                    sh 'npm test'
                 }
             }
         }
@@ -34,12 +42,6 @@ pipeline {
                       --tenant $AZURE_TENANT_ID
                     az account set -s $AZURE_SUBSCRIPTION_ID
                 '''
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-                sh 'npm test'
             }
         }
         stage('Deploy to Azure Function') {
