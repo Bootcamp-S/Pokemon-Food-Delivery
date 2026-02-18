@@ -7,7 +7,8 @@ pipeline {
         AZURE_TENANT_ID     = credentials('AZURE_TENANT_ID')
         FUNCTION_APP_NAME   = "pokedelivery-func"
         RESOURCE_GROUP      = "pokedelivery-rg"
-
+        }
+        
     stages {
         stage('Build') {
             steps {
@@ -45,5 +46,5 @@ pipeline {
             }
         }
     }
-}
-    
+
+}   
