@@ -52,7 +52,7 @@ pipeline {
                     az functionapp deployment source config-zip \
                       -g $RESOURCE_GROUP \
                       -n $FUNCTION_APP_NAME \
-                      --src build.zip
+                      --src api/build.zip
                 '''
             }
         }
