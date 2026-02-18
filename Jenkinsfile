@@ -20,7 +20,7 @@ pipeline {
                         echo "Building..."
                         # Beispiel: Node Function App
                         npm install
-                        zip -r build.zip .
+                        zip -r ./build.zip .
                     '''
                 }
             }
