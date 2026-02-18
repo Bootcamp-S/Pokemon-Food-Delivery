@@ -39,6 +39,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                npm test
             }
         }
         stage('Deploy to Azure Function') {
