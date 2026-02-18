@@ -1,6 +1,8 @@
 pipeline {
     agent any
 
+        tools {nodejs "nodejs"}
+
         environment {
         AZURE_CLIENT_ID     = credentials('AZURE_CLIENT_ID')
         AZURE_CLIENT_SECRET = credentials('AZURE_CLIENT_SECRET')
@@ -8,7 +10,7 @@ pipeline {
         FUNCTION_APP_NAME   = "pokedelivery-func"
         RESOURCE_GROUP      = "pokedelivery-rg"
         }
-        
+
     stages {
         stage('Build') {
             steps {
