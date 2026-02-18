@@ -14,6 +14,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                working-directory: ./api
                 sh '''
                     echo "Building..."
                     # Beispiel: Node Function App
