@@ -7,6 +7,7 @@ pipeline {
         AZURE_CLIENT_ID     = credentials('AZURE_CLIENT_ID')
         AZURE_CLIENT_SECRET = credentials('AZURE_CLIENT_SECRET')
         AZURE_TENANT_ID     = credentials('AZURE_TENANT_ID')
+        AZURE_SUBSCRIPTION_ID = credentials('AZURE_SUBSCRIPTION_ID')
         FUNCTION_APP_NAME   = "pokedelivery-func"
         RESOURCE_GROUP      = "pokedelivery-rg"
         }
@@ -31,6 +32,7 @@ pipeline {
                       -u $AZURE_CLIENT_ID \
                       -p $AZURE_CLIENT_SECRET \
                       --tenant $AZURE_TENANT_ID
+                    az account set -s $AZURE_SUBSCRIPTION_ID
                 '''
             }
         }
