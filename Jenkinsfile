@@ -20,7 +20,7 @@ pipeline {
                         echo "Building..."
                         # Beispiel: Node Function App
                         npm install
-                        zip -r build.zip ${WORKSPACE}
+                        zip -r build.zip .
                     '''
                 }
             }
@@ -44,10 +44,15 @@ pipeline {
         stage('Deploy to Azure Function') {
             steps {
                 sh '''
+                    echo "PWD = $(pwd)"
+                    echo "WORKSPACE = $WORKSPACE"
+                    ls -al $WORKSPACE
+                    ls -al $WORKSPACE/api
+                    
                     az functionapp deployment source config-zip \
                       -g $RESOURCE_GROUP \
                       -n $FUNCTION_APP_NAME \
-                      --src ${WORKSPACE}/build.zip
+                      --src build.zip
                 '''
             }
         }
