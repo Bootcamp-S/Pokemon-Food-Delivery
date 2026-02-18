@@ -44,11 +44,6 @@ pipeline {
         stage('Deploy to Azure Function') {
             steps {
                 sh '''
-                    echo "PWD = $(pwd)"
-                    echo "WORKSPACE = $WORKSPACE"
-                    ls -al $WORKSPACE
-                    ls -al $WORKSPACE/api
-                    
                     az functionapp deployment source config-zip \
                       -g $RESOURCE_GROUP \
                       -n $FUNCTION_APP_NAME \
