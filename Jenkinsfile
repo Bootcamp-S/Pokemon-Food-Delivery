@@ -14,13 +14,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                working-directory: ./api
-                sh '''
-                    echo "Building..."
-                    # Beispiel: Node Function App
-                    npm install
-                    zip -r build.zip .
-                '''
+                dir("./api") {
+                    sh '''
+                        echo "Building..."
+                        # Beispiel: Node Function App
+                        npm install
+                        zip -r build.zip .
+                    '''
+                }
             }
         }
         stage('Azure Login') {
