@@ -1,27 +1,89 @@
 const getPokemon = require('./index');
 
-const context = {
-    res: null
-};
+// Test 1: Valid Pokémon (bulbasaur)
+const context1 = { res: null };
+const req1 = { query: { name: 'bulbasaur' } };
 
-const req = {
-    query: {
-        name: 'bulbasaur'
-    }
-};
+getPokemon(context1, req1).then(() => {
+    console.log('Response:', context1.res);
 
-getPokemon(context, req).then(() => {
-    console.log('Response:', context.res);
-    
     const expected = 'Avocado Roll';
-    const actual = context.res?.body?.favoriteFood;
+    const actual = context1.res?.body?.favoriteFood;
     if (actual !== expected) {
         console.error(`Test failed: expected favoriteFood="${expected}", got "${actual}"`);
         process.exit(1);
     }
 
     console.log("Test passed.");
-    
+}).catch(err => {
+    console.error('Error:', err);
+});
+
+
+//
+// Test 2: Pokémon does not exist
+//
+const context2 = { res: null };
+const req2 = { query: { name: 'doesnotexist123' } };
+
+getPokemon(context2, req2).then(() => {
+    console.log('Response:', context2.res);
+
+    if (context2.res.status !== 500) {
+        console.error(`Test failed: expected status=500, got "${context2.res.status}"`);
+        process.exit(1);
+    }
+
+    if (!String(context2.res.body).includes('Error')) {
+        console.error(`Test failed: expected an error message, got: "${context2.res.body}"`);
+        process.exit(1);
+    }
+
+    console.log("Test passed.");
+}).catch(err => {
+    console.error('Error:', err);
+});
+
+
+//
+// Test 3: Missing query param → defaults to pikachu
+//
+const context3 = { res: null };
+const req3 = { query: {} };
+
+getPokemon(context3, req3).then(() => {
+    console.log('Response:', context3.res);
+
+    const actual = context3.res?.body?.name;
+    const expected = 'pikachu';
+
+    if (actual !== expected) {
+        console.error(`Test failed: expected default name="${expected}", got "${actual}"`);
+        process.exit(1);
+    }
+
+    console.log("Test passed.");
+}).catch(err => {
+    console.error('Error:', err);
+});
+
+
+//
+// Test 4: Case sensitivity test ("BulBaSaUr")
+// Should fail because PokeAPI requires lowercase
+//
+const context4 = { res: null };
+const req4 = { query: { name: 'BulBaSaUr' } };
+
+getPokemon(context4, req4).then(() => {
+    console.log('Response:', context4.res);
+
+    if (context4.res.status !== 500) {
+        console.error(`Test failed: expected 500 for case-sensitive input, got "${context4.res.status}"`);
+        process.exit(1);
+    }
+
+    console.log("Test passed.");
 }).catch(err => {
     console.error('Error:', err);
 });
