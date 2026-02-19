@@ -24,6 +24,8 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      - name: Wait 120 seconds
+        run: sleep 120
       - id: automerge
         name: automerge
         uses: "pascalgn/automerge-action@v0.16.4"
