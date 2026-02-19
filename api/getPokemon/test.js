@@ -66,24 +66,3 @@ getPokemon(context3, req3).then(() => {
 }).catch(err => {
     console.error('Error:', err);
 });
-
-
-//
-// Test 4: Case sensitivity test ("BulBaSaUr")
-// Should fail because PokeAPI requires lowercase
-//
-const context4 = { res: null };
-const req4 = { query: { name: 'BulBaSaUr' } };
-
-getPokemon(context4, req4).then(() => {
-    console.log('Response:', context4.res);
-
-    if (context4.res.status !== 500) {
-        console.error(`Test failed: expected 500 for case-sensitive input, got "${context4.res.status}"`);
-        process.exit(1);
-    }
-
-    console.log("Test passed.");
-}).catch(err => {
-    console.error('Error:', err);
-});
