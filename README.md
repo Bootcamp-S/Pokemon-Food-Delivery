@@ -83,7 +83,7 @@ Das Dev Team hat bereits eine Entwicklerversion der APP auf Basis des `Requireme
 ---
 
 ## Wissenswertes
-
+ 
 ### Videos
 
 | 🎥 **Kursname**                                                       | 🔗 **URL**                                                                                   | 🎯 **Fokus im Bootcamp**                                      |
