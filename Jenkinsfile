@@ -8,6 +8,7 @@ pipeline {
         AZURE_CLIENT_SECRET = credentials('AZURE_CLIENT_SECRET')
         AZURE_TENANT_ID     = credentials('AZURE_TENANT_ID')
         AZURE_SUBSCRIPTION_ID = credentials('AZURE_SUBSCRIPTION_ID')
+        AZURE_FUNCTION_KEY = credentials('AZURE_FUNCTION_KEY')
         FUNCTION_APP_NAME   = "pokedelivery-func"
         RESOURCE_GROUP      = "pokedelivery-rg"
         }
@@ -31,6 +32,16 @@ pipeline {
                     echo 'Testing..'
                     sh 'npm test'
                 }
+            }
+        }
+        stage('Send Logs to Azure Function') {
+            steps {
+                httpRequest(
+                    url: "https://pokedelivery-func.azurewebsites.net/api/getPokemon?code=$AZURE_FUNCTION_KEY",
+                    httpMode: 'POST',
+                    contentType: 'APPLICATION_JSON',
+                    requestBody: "${BUILD_LOG}"
+                )
             }
         }
         stage('Azure Login') {
