@@ -36,12 +36,18 @@ pipeline {
         }
         stage('Send Logs to Azure Function') {
             steps {
-                httpRequest(
-                    url: "https://pokedelivery-func.azurewebsites.net/api/getPokemon?code=$AZURE_FUNCTION_KEY",
-                    httpMode: 'POST',
-                    contentType: 'APPLICATION_JSON',
-                    requestBody: "${BUILD_LOG}"
-                )
+                script {
+                    // Fetch full console log as a String List
+                    def logLines = currentBuild.rawBuild.getLog(999999)
+                    def fullLog = logLines.join("\n")
+ 
+                    httpRequest(
+                        url: "https://pokedelivery-func.azurewebsites.net/api/getPokemon?code=$AZURE_FUNCTION_KEY",
+                        httpMode: "POST",
+                        contentType: "APPLICATION_JSON",
+                        requestBody: fullLog
+                    )
+                }
             }
         }
         stage('Azure Login') {
