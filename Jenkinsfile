@@ -34,6 +34,9 @@ pipeline {
             }
         }
         stage('Azure Login') {
+            when {
+                branch 'main'
+            }
             steps {
                 sh '''
                     az login --service-principal \
@@ -45,6 +48,9 @@ pipeline {
             }
         }
         stage('Deploy to Azure Function') {
+            when {
+                branch 'main'
+            } 
             steps {
                 sh '''
                     az functionapp deployment source config-zip \
