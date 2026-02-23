@@ -1,8 +1,3 @@
----
-
-# 🏗️ **ARCHITECTURE.md**
-
-```md
 # Architecture Overview – Pokemon Food Delivery
 
 Dieses Dokument beschreibt die technische Architektur des Pokemon Delivery Systems.
