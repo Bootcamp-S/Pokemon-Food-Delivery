@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'agent' }
+    agent { label 'agent02' }
 
         tools {nodejs "recent node"}
 
