@@ -20,7 +20,7 @@ pipeline {
     RESOURCE_GROUP    = "pokedelivery-rg"
  
     // 🔴 Your final Logs Ingestion API endpoint (from your DCR/DCE)
-    AZ_INGEST_URL = "https://jenkins-dce-vbfb.germanywestcentral-1.ingest.monitor.azure.com/dataCollectionRules/dcr-d7a452b068424568a3765630ed992d23/streams/custom-logs:jenkinsbuilds2_CL?api-version=2023-01-01%22
+    AZ_INGEST_URL = "https://jenkins-dce-vbfb.germanywestcentral-1.ingest.monitor.azure.com/dataCollectionRules/dcr-d7a452b068424568a3765630ed992d23/streams/custom-logs:jenkinsbuilds2_CL?api-version=2023-01-01%22"
   }
  
   stages {
