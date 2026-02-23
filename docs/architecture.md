@@ -1,6 +1,6 @@
 ---
 
-## 🏗️ **ARCHITECTURE.md**
+# 🏗️ **ARCHITECTURE.md**
 
 ```md
 # Architecture Overview – Pokemon Food Delivery
