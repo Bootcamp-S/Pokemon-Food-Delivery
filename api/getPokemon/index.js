@@ -29,14 +29,13 @@ module.exports = async function (context, req) {
     // ✅ Custom short-circuit for "seyfert"
     if (name === 'seyfert') {
         const customPokemon = {
-            name: 'seyfert',
+            name: 'Marcus',
             id: 42,                 
             height: 17,    
             weight: 888,
             base_experience: 300,
-            types: ['water', 'psychic'],
+            type: 'seyfert',
             favorite_drink: 'Coffee',
-            lore: 'A mysterious cosmic Pokémon said to dwell near active galactic cores.',
             abilities: ['coffee_blast', 'coffee_bomb'],
         };
 
