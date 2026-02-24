@@ -1,0 +1,16 @@
+type: http
+name: Get bulbasaur
+request:
+  method: GET
+  url: {{baseUrl}}/api/index
+  query:
+    name: bulbasaur
+tests:
+  - name: status 200
+    script: |
+      expect(response.status).to.equal(200);
+  - name: bulbasaur -> Avocado Roll
+    script: |
+      const body = response.json();
+      expect(body.name).to.equal('bulbasaur');
+      expect(body.favoriteFood).to.equal('Avocado Roll');
