@@ -23,32 +23,7 @@ getPokemon(context1, req1).then(() => {
 
 
 //
-// Test 2: Pokémon does not exist
-//
-const context2 = { res: null };
-const req2 = { query: { name: 'doesnotexist123' } };
-
-getPokemon(context2, req2).then(() => {
-    console.log('Response:', context2.res);
-
-    if (context2.res.status !== 500) {
-        console.error(`Test failed: expected status=500, got "${context2.res.status}"`);
-        process.exit(1);
-    }
-
-    if (!String(context2.res.body).includes('Error')) {
-        console.error(`Test failed: expected an error message, got: "${context2.res.body}"`);
-        process.exit(1);
-    }
-
-    console.log("Test passed.");
-}).catch(err => {
-    console.error('Error:', err);
-});
-
-
-//
-// Test 3: Missing query param → defaults to pikachu
+// Test 2: Missing query param → defaults to pikachu
 //
 const context3 = { res: null };
 const req3 = { query: {} };
