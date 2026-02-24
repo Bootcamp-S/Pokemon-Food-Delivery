@@ -26,7 +26,6 @@ module.exports = async function (context, req) {
         normal: 'Classic Nigiri'
     };
 
-    // ✅ Custom short-circuit for "seyfert"
     if (name === 'marcus') {
         const customPokemon = {
             name: 'Marcus',
