@@ -3,7 +3,7 @@ const http = require('http');
 const url = require('url');
 const getPokemon = require('./index'); // your function exported as module.exports = async function (context, req) {}
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5050;
 
 const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
