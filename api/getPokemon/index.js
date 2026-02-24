@@ -34,10 +34,10 @@ module.exports = async function (context, req) {
             height: 17,    
             weight: 888,
             base_experience: 300,
-            types: ['cosmic', 'psychic'],
-            favoriteFood: 'Coffee',
+            types: ['water', 'psychic'],
+            favorite_drink: 'Coffee',
             lore: 'A mysterious cosmic Pokémon said to dwell near active galactic cores.',
-            abilities: ['event-horizon', 'gravitic-lens'],
+            abilities: ['coffee_blast', 'coffee_bomb'],
         };
 
         context.res = {
