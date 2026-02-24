@@ -1,10 +1,10 @@
 type: http
-name: Seyfert shortcut
+name: marcus shortcut
 request:
   method: GET
   url: {{baseUrl}}/api/index
   query:
-    name: seyfert
+    name: marcus
 tests:
   - name: status 200
     script: |
@@ -14,5 +14,5 @@ tests:
       const b = response.json();
       expect(b.name).to.equal('Marcus');
       expect(b.id).to.equal(42);
-      expect(b.types).to.deep.equal(['seyfert']);
+      expect(b.types).to.deep.equal(['cto']);
       expect(b.favoriteFood).to.equal('Coffee');
