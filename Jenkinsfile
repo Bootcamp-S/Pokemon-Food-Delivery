@@ -48,12 +48,12 @@ pipeline {
                 dir("api") {
                     sh '''
                         echo "Starting local test server..."
-                        nohup node server.js > server.log 2>&1 &
+                        PORT 5050 nohup node server.js > server.log 2>&1 &
                         echo $! > server.pid
 
                         # Wait for readiness
                         for i in {1..20}; do
-                          if curl -fsS http://127.0.0.1:3000/api/index >/dev/null; then
+                          if curl -fsS http://127.0.0.1:5050/api/index >/dev/null; then
                             echo "Server is up."
                             exit 0
                           fi
