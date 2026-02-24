@@ -34,9 +34,8 @@ module.exports = async function (context, req) {
             height: 17,    
             weight: 888,
             base_experience: 300,
-            type: 'seyfert',
-            favorite_drink: 'Coffee',
-            abilities: ['coffee_blast', 'coffee_bomb'],
+            types: ['seyfert'],
+            favoriteFood: 'Coffee',
         };
 
         context.res = {
