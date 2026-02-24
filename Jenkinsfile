@@ -29,7 +29,10 @@ pipeline {
             steps {
                 dir("api") {
                     echo 'Testing..'
-                    sh 'npm test -- --runInBand --testTimeout=20000'
+                    sh '''
+                    npm install
+                    npm test -- --runInBand --testTimeout=20000
+                    '''
                 }
             }
         }
