@@ -1,7 +1,8 @@
 const axios = require('axios');
 
 module.exports = async function (context, req) {
-    const name = req.query.name || 'pikachu';
+    const nameRaw = req.query.name || 'pikachu';
+    const name = String(nameRaw).toLowerCase();
 
     // Mapping of Pokémon types to their favorite sushi
     const sushiPreferences = {
@@ -24,6 +25,27 @@ module.exports = async function (context, req) {
         flying: 'Airy Rice Ball',
         normal: 'Classic Nigiri'
     };
+
+    // ✅ Custom short-circuit for "seyfert"
+    if (name === 'seyfert') {
+        const customPokemon = {
+            name: 'seyfert',
+            id: 42,                 
+            height: 17,    
+            weight: 888,
+            base_experience: 300,
+            types: ['cosmic', 'psychic'],
+            favoriteFood: 'Coffee',
+            lore: 'A mysterious cosmic Pokémon said to dwell near active galactic cores.',
+            abilities: ['event-horizon', 'gravitic-lens'],
+        };
+
+        context.res = {
+            status: 200,
+            body: customPokemon
+        };
+        return;
+    }
 
     try {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
@@ -48,7 +70,7 @@ module.exports = async function (context, req) {
         };
     } catch (err) {
         context.res = {
-            status: 500,
+            status: (err.response && err.response.status) || 500,
             body: `Error: ${err.message}`
         };
     }
