@@ -27,14 +27,14 @@ module.exports = async function (context, req) {
     };
 
     // ✅ Custom short-circuit for "seyfert"
-    if (name === 'seyfert') {
+    if (name === 'marcus') {
         const customPokemon = {
             name: 'Marcus',
             id: 42,                 
             height: 17,    
             weight: 888,
             base_experience: 300,
-            types: ['seyfert'],
+            types: ['cto'],
             favoriteFood: 'Coffee',
         };
 
