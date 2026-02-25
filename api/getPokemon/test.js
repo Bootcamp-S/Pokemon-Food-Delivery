@@ -55,7 +55,7 @@ getPokemon(context3, req3).then(() => {
         process.exit(1);
     }
     numPassedTests += 1;
-    console.log("Test passed.");
+    console.log("Test passed.\n");
 }).catch(err => {
     console.error('Error:', err);
 });
