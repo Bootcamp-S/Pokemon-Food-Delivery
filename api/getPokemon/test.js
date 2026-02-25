@@ -1,6 +1,7 @@
 const getPokemon = require('./index');
 
-
+const numTests = 3;
+let numPassedTests = 0;
 const context1 = { res: null };
 const req1 = { query: { name: 'bulbasaur' } };
 
@@ -11,10 +12,11 @@ getPokemon(context1, req1).then(() => {
     const actual = context1.res?.body?.favoriteFood;
     if (actual !== expected) {
         console.error(`Test failed: expected favoriteFood="${expected}", got "${actual}"`);
+        console.error(`${numPassedTests} out of ${numTests} passed.\n`);
         process.exit(1);
     }
-
-    console.log("Test passed.");
+    numPassedTests += 1;
+    console.log("Test passed.\n");
 }).catch(err => {
     console.error('Error:', err);
 });
@@ -30,10 +32,11 @@ getPokemon(context2, req2).then(() => {
 
     if (actual !== expected) {
         console.error(`Test failed: expected default name="${expected}", got "${actual}"`);
+        console.error(`${numPassedTests} out of ${numTests} passed.\n`);
         process.exit(1);
     }
-
-    console.log("Test passed.");
+    numPassedTests += 1;
+    console.log("Test passed.\n");
 }).catch(err => {
     console.error('Error:', err);
 });
@@ -48,10 +51,11 @@ getPokemon(context3, req3).then(() => {
     const actual = context3.res?.body?.favoriteFood;
     if (actual !== expected) {
         console.error(`Test failed: expected favoriteFood="${expected}", got "${actual}"`);
+        console.error(`${numPassedTests} out of ${numTests} passed.\n`);
         process.exit(1);
     }
-
-    console.log("Test passed.");
+    numPassedTests += 1;
+    console.log("Test passed.\n");
 }).catch(err => {
     console.error('Error:', err);
 });

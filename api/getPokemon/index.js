@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios'); 
 
 module.exports = async function (context, req) {
     const nameRaw = req.query.name || 'pikachu';
@@ -26,7 +26,7 @@ module.exports = async function (context, req) {
         normal: 'Classic Nigiri'
     };
 
-    if (name === 'marcus') {
+    if (name === 'marcus') { 
         const customPokemon = {
             name: 'Marcus',
             id: 42,                 
