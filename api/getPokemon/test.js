@@ -1,8 +1,6 @@
 const getPokemon = require('./index');
 
-// Test 0: M.S. 
 
-// Test 1: Valid Pokémon (bulbasaur)
 const context1 = { res: null };
 const req1 = { query: { name: 'bulbasaur' } };
 
@@ -21,21 +19,35 @@ getPokemon(context1, req1).then(() => {
     console.error('Error:', err);
 });
 
+const context2 = { res: null };
+const req2 = { query: {} };
 
-//
-// Test 2: Missing query param → defaults to pikachu
-//
-const context3 = { res: null };
-const req3 = { query: {} };
+getPokemon(context2, req2).then(() => {
+    console.log('Response:', context2.res);
 
-getPokemon(context3, req3).then(() => {
-    console.log('Response:', context3.res);
-
-    const actual = context3.res?.body?.name;
+    const actual = context2.res?.body?.name;
     const expected = 'pikachu';
 
     if (actual !== expected) {
         console.error(`Test failed: expected default name="${expected}", got "${actual}"`);
+        process.exit(1);
+    }
+
+    console.log("Test passed.");
+}).catch(err => {
+    console.error('Error:', err);
+});
+
+const context3 = { res: null };
+const req3 = { query: { name: 'Marcus' } };
+
+getPokemon(context3, req3).then(() => {
+    console.log('Response:', context3.res);
+
+    const expected = 'Coffee';
+    const actual = context3.res?.body?.favoriteFood;
+    if (actual !== expected) {
+        console.error(`Test failed: expected favoriteFood="${expected}", got "${actual}"`);
         process.exit(1);
     }
 

@@ -33,7 +33,7 @@ module.exports = async function (context, req) {
             height: 17,    
             weight: 888,
             base_experience: 300,
-            types: ['cto'],
+            types: ['CTO'],
             favoriteFood: 'Coffee',
         };
 
