@@ -26,7 +26,7 @@ module.exports = async function (context, req) {
         normal: 'Classic Nigiri'
     };
 
-    if (name === 'marcus') {
+    if (name === 'marcus') { 
         const customPokemon = {
             name: 'Marcus',
             id: 42,                 
