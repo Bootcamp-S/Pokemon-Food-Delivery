@@ -2,62 +2,59 @@ const getPokemon = require('./index');
 
 const numTests = 3;
 let numPassedTests = 0;
-const context1 = { res: null };
-const req1 = { query: { name: 'bulbasaur' } };
 
-getPokemon(context1, req1).then(() => {
-    console.log('Response:', context1.res);
+function assertEqual(actual, expected, message) {
+  if (actual !== expected) {
+    throw new Error(`${message} expected="${expected}", got="${actual}"`);
+  }
+}
 
-    const expected = 'Avocado Roll';
-    const actual = context1.res?.body?.favoriteFood;
-    if (actual !== expected) {
-        console.error(`Test failed: expected favoriteFood="${expected}", got "${actual}"`);
-        console.error(`${numPassedTests} out of ${numTests} passed.\n`);
-        process.exit(1);
-    }
-    numPassedTests += 1;
-    console.log("Test passed.\n");
-}).catch(err => {
-    console.error('Error:', err);
-});
+async function test1() {
+  const context = { res: null };
+  const req = { query: { name: 'bulbasaur' } };
+  await getPokemon(context, req);
 
-const context2 = { res: null };
-const req2 = { query: {} };
+  const expected = 'Avocado Roll';
+  const actual = context.res?.body?.favoriteFood;
+  assertEqual(actual, expected, 'Test1 failed: favoriteFood mismatch');
+  console.log('Test1 passed.\n');
+  numPassedTests += 1;
+}
 
-getPokemon(context2, req2).then(() => {
-    console.log('Response:', context2.res);
+async function test2() {
+  const context = { res: null };
+  const req = { query: {} };
+  await getPokemon(context, req);
 
-    const actual = context2.res?.body?.name;
-    const expected = 'pikachu';
+  const expected = 'pikachu';
+  const actual = context.res?.body?.name;
+  assertEqual(actual, expected, 'Test2 failed: default name mismatch');
+  console.log('Test2 passed.\n');
+  numPassedTests += 1;
+}
 
-    if (actual !== expected) {
-        console.error(`Test failed: expected default name="${expected}", got "${actual}"`);
-        console.error(`${numPassedTests} out of ${numTests} passed.\n`);
-        process.exit(1);
-    }
-    numPassedTests += 1;
-    console.log("Test passed.\n");
-}).catch(err => {
-    console.error('Error:', err);
-});
+async function test3() {
+  const context = { res: null };
+  const req = { query: { name: 'Marcus' } };
+  await getPokemon(context, req);
 
-const context3 = { res: null };
-const req3 = { query: { name: 'Marcus' } };
+  const expected = 'Coffee';
+  const actual = context.res?.body?.favoriteFood;
+  assertEqual(actual, expected, 'Test3 failed: favoriteFood mismatch');
+  console.log('Test3 passed.\n');
+  numPassedTests += 1;
+}
 
-getPokemon(context3, req3).then(() => {
-    console.log('Response:', context3.res);
-
-    const expected = 'Coffee';
-    const actual = context3.res?.body?.favoriteFood;
-    if (actual !== expected) {
-        console.error(`Test failed: expected favoriteFood="${expected}", got "${actual}"`);
-        console.error(`${numPassedTests} out of ${numTests} passed.\n`);
-        process.exit(1);
-    }
-    numPassedTests += 1;
-    console.log("Test passed.\n");
-}).catch(err => {
-    console.error('Error:', err);
-});
-
-console.log(`${numPassedTests} out of ${numTests} passed.\n`);
+(async () => {
+  try {
+    await test1();
+    await test2();
+    await test3();
+    console.log(`${numPassedTests} out of ${numTests} passed.\n`);
+    process.exit(0);
+  } catch (err) {
+    console.error(err.message || err);
+    console.error(`${numPassedTests} out of ${numTests} passed.\n`);
+    process.exit(1);
+  }
+})();
