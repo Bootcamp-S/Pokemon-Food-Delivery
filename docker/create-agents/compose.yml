@@ -1,0 +1,29 @@
+services:
+  agent01:
+    image: inbound-agent-pd:latest
+    container_name: agent01
+    init: true
+    restart: unless-stopped
+
+    volumes:
+      - /home/bootcamp/jenkins:/home/jenkins/agent
+
+    command: >
+      -url ${JENKINS_URL}
+      ${AGENT01_SECRET}
+      agent01
+
+  agent02:
+    image: inbound-agent-pd:latest
+    container_name: agent02
+    init: true
+    restart: unless-stopped
+
+    # Separate directory for agent02
+    volumes:
+      - /home/bootcamp/jenkins-2nd-agent:/home/jenkins/agent
+
+    command: >
+      -url ${JENKINS_URL}
+      ${AGENT02_SECRET}
+      agent02
