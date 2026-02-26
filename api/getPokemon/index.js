@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios'); 
 
 module.exports = async function (context, req) {
     const nameRaw = req.query.name || 'pikachu';
